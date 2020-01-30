@@ -1,0 +1,90 @@
+<?php 
+	include 'connect.php';
+	
+	if(isset($_POST['button_input'])){
+		
+		$sql = "INSERT INTO dashboard(patient_id,Patient_name, Email, Phone_no, Gender,Disease_type, apointment_date, Address,Ref_doctor) 
+				values('".$_POST['patient_id']."',
+					'".$_POST['Patient_name']."',
+					'".$_POST['Email']."',
+					'".$_POST['Phone_no']."',
+					'".$_POST['Gender']."',
+					'".$_POST['Disease_type']."',
+					'".$_POST['apointment_date']."',
+					'".$_POST['Address']."',
+					'".$_POST['Ref_doctor']."'
+				
+				)";
+				
+		if(mysqli_query($conn, $sql) or die("Error: ".mysqli_error($conn)))
+			{
+			header ('Location:Action.php');	
+			}
+		else
+			{
+				
+			echo ("Error Occured".mysqli_errno($conn));	
+			}
+		
+		}
+	
+	
+?>
+
+<b> 
+
+<center>
+<h1 style="background-color:LightSteelBlue ;">Add User  </h1>
+
+</center>
+</b>
+
+<body style="background-color:LightSlateGray ;">
+<form action="" method="post">
+    
+	<table>
+    	<tr>
+        	<td>Patient-id</td>
+            <td><input name="patient_id"></td>
+        </tr>
+        <tr>
+        	<td>Patient-name</td>
+            <td><input name="Patient_name"></td>
+        </tr>
+        <tr>
+        	<td>Email</td>
+            <td><input name="Email"></td>
+        </tr>
+        <tr>
+        	<td>Phone-no</td>
+            <td><input name="Phone_no"></td>
+        </tr>
+        <tr>
+        	<td>Gender</td>
+            <td><input type="radio" name="Gender" value="male" checked> Male<br>
+                <input type="radio" name="Gender" value="female"> Female<br>
+                <input type="radio" name="Gender" value="other"> Other</td>
+        </tr>
+         <tr>
+        	<td>Disease-type</td>
+            <td><input name="Disease_type"></td>
+        </tr>
+         <tr>
+        	<td>Appoinment-date</td>
+            <td><input name="apointment_date"></td>
+        </tr>
+         <tr>
+        	<td>Address</td>
+            <td><input name="Address"></td>
+        </tr>
+         <tr>
+        	<td>Ref-Doctor</td>
+            <td><input name="Ref_doctor"></td>
+        </tr>
+        <tr>
+        	<td></td>
+            <td><input type="submit" name="button_input"></td>
+        </tr>
+    </table>
+	
+<form>
